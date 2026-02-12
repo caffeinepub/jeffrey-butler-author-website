@@ -2,12 +2,13 @@
   "frontend/src/App.tsx": "Main application component with TanStack Router setup, defining routes for Home, Books, and About pages with a shared Layout component containing header and footer.",
   "frontend/src/components/SiteHeader.tsx": "Responsive navigation header with desktop and mobile menu, active route highlighting, and sticky positioning with backdrop blur effect.",
   "frontend/src/components/SiteFooter.tsx": "Site footer with copyright notice and Caffeine.ai attribution link with proper UTM tracking parameters.",
-  "frontend/src/pages/HomePage.tsx": "Home page featuring a hero section with background image, author introduction, featured books grid, and call-to-action section.",
-  "frontend/src/pages/BooksPage.tsx": "Books page displaying detailed book cards with cover images, status badges, descriptions, and availability information for both published and in-progress works.",
-  "frontend/src/pages/AboutPage.tsx": "About page with author portrait, biography paragraphs, and highlights section in a card layout.",
-  "frontend/src/content/siteContent.ts": "Centralized content module containing all site copy, book data, and asset paths; updated to use uploaded Torment cover and author portrait images from /assets/uploads/.",
+  "frontend/src/pages/HomePage.tsx": "Home page featuring a hero section with background image, author introduction, featured books grid using SafeImage component with fallbacks, and call-to-action section.",
+  "frontend/src/pages/BooksPage.tsx": "Books page displaying detailed book cards with cover images using SafeImage component with fallbacks, status badges, descriptions, and availability information.",
+  "frontend/src/pages/AboutPage.tsx": "About page with author portrait using SafeImage component with fallback, biography paragraphs, and highlights section in a card layout.",
+  "frontend/src/content/siteContent.ts": "Centralized content module containing all site copy, book data, and corrected asset paths pointing to actual static files in /assets/generated/ and /assets/ directories.",
   "frontend/src/hooks/useQueries.ts": "Placeholder file for future React Query hooks to interact with backend (currently empty as backend has no methods).",
   "frontend/src/index.css": "Global styles with OKLCH color system defining a warm literary palette with charcoal, burgundy, and amber tones for both light and dark modes.",
   "frontend/tailwind.config.js": "Tailwind configuration with custom Playfair Display serif font, extended color tokens, and typography plugin setup.",
-  "frontend/index.html": "HTML entry point with proper meta tags, Playfair Display font import, and updated title for the author website."
+  "frontend/index.html": "HTML entry point with proper meta tags, Playfair Display font import, and updated title for the author website.",
+  "frontend/src/components/SafeImage.tsx": "Reusable image component that wraps img with onError handler to gracefully swap to a fallback image when the primary source fails to load, with loop prevention."
 }

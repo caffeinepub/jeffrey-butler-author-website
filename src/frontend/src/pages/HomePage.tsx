@@ -2,6 +2,7 @@ import { Link } from '@tanstack/react-router';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { SafeImage } from '@/components/SafeImage';
 import { siteContent } from '@/content/siteContent';
 import { ArrowRight, BookOpen } from 'lucide-react';
 
@@ -62,8 +63,9 @@ export default function HomePage() {
               <Card key={book.id} className="overflow-hidden hover:shadow-lg transition-shadow">
                 <div className="flex flex-col sm:flex-row">
                   <div className="sm:w-1/3 aspect-[2/3] relative overflow-hidden bg-muted">
-                    <img
+                    <SafeImage
                       src={book.coverImage}
+                      fallbackSrc="/assets/generated/book-coming-soon-cover.dim_1600x2560.png"
                       alt={`${book.title} cover`}
                       className="absolute inset-0 w-full h-full object-cover"
                     />

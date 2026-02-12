@@ -1,24 +1,27 @@
 {
   "kind": "spec_vs_diff_report",
   "version": "1.0",
-  "generatedAt": "2026-02-12T17:28:56.132Z",
-  "summary": "siteContent.ts was updated to reference new uploaded image paths for the Torment cover and author portrait, while keeping the second book cover on the existing placeholder. However, the diff shows no new static image assets added under frontend/public, so the uploaded image files themselves (with normalized filenames) do not appear to have been added.",
+  "generatedAt": "2026-02-12T17:35:22.246Z",
+  "summary": "Implemented a SafeImage component with onError fallback swapping and updated siteContent image paths; pages now use SafeImage for book covers and author portrait. Potential remaining risk: the updated author portrait path contains spaces and may still not resolve correctly in production depending on the actual filename under frontend/public and URL encoding/case.",
   "missing_requirements": [
     {
-      "id": "REQ-6",
-      "requirement": "Add the user-uploaded images to the frontend as static assets under frontend/public (e.g., /assets/uploads/) with normalized web-safe filenames (no spaces), and ensure Torment uses the uploaded cover and About uses the uploaded portrait with no broken image URLs.",
-      "reason": "The diff summary shows no added files, only modifications. While siteContent now references /assets/uploads/torment-cover.png and /assets/uploads/jeffrey-butler-portrait.png, there is no evidence that the actual image files were added under frontend/public/assets/uploads/, nor that the uploaded originals were saved with normalized filenames.",
+      "id": "REQ-8",
+      "requirement": "All image filenames referenced in code match the exact filenames present under frontend/public (including case sensitivity) and resolve to actual static files (no 404s), including the author portrait image.",
+      "reason": "The diff updates the portrait path to a URL containing spaces (\"/assets/Jeffrey Butler profile image.png\"), which commonly causes production static-file resolution issues unless the underlying file path exactly matches and the server handles spaces/encoding as expected. The diff does not provide evidence that the referenced filename is web-safe or that a matching static file exists under frontend/public.",
       "evidence": [
-        "File diff summary: Added: 0, Modified: 3, Removed: 0",
         "frontend/src/content/siteContent.ts"
       ]
     }
   ],
   "hallucinated_features": [],
-  "confidence": 0.78,
+  "confidence": 0.62,
   "changed_files": [
     "frontend-file-summaries.txt",
+    "frontend/src/components/SafeImage.tsx",
     "frontend/src/content/siteContent.ts",
+    "frontend/src/pages/AboutPage.tsx",
+    "frontend/src/pages/BooksPage.tsx",
+    "frontend/src/pages/HomePage.tsx",
     "project_state.json"
   ]
 }

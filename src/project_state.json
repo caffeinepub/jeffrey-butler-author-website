@@ -1,12 +1,15 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 5,
+  "projectStateVersion": 7,
   "summary": "Build an author website for Jeffrey Butler (similar in style to https://www.danpadavona.com/) to showcase current and upcoming books, including the published book \"Torment\" and a second book in progress.",
   "architectural_notes": [
-    "Replace generated placeholder assets (book covers + author portrait) with user-provided images for the two books and the author headshot; update site content/config to reference the new static assets."
+    "Replace generated placeholder assets (book covers + author portrait) with user-provided images for the two books and the author headshot; update site content/config to reference the new static assets.",
+    "Ensure all image asset paths/URLs referenced in the frontend match actual files under public assets and resolve correctly in production (no broken image links)."
   ],
-  "known_issues": [],
-  "isFixRequest": false,
+  "known_issues": [
+    "Broken image links in the live draft/production deployment (images not loading due to incorrect paths or missing assets)."
+  ],
+  "isFixRequest": true,
   "existing_features": [
     {
       "id": "feature-create-a-responsive-author-website-for-jeffrey-butler-with-site-structure-and-content-suitable-for-an-author-portfolio-that-is-broadly-similar-in-layout-complexity-to-https-www-danpadavona-com-header-navigation-hero-section-featured-book-s-and-clear-sectioning",
@@ -61,6 +64,22 @@
       "title": "Update frontend/src/content/siteContent.ts to point to the new static asset paths for (1) the \"Torment\" cover image and (2) the author portrait image, while leaving the second book's cover image unchanged (still using the existing placeholder) unless a second cover image asset is actually present in the project.",
       "reqIds": [
         "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-fix-broken-image-urls-so-all-images-referenced-by-the-site-load-correctly-in-production-including-the-hero-background-the-torment-cover-the-coming-soon-cover-placeholder-and-the-author-portrait",
+      "title": "Fix broken image URLs so all images referenced by the site load correctly in production, including the hero background, the Torment cover, the coming-soon cover placeholder, and the author portrait.",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-graceful-image-fallback-for-book-covers-and-the-author-portrait-so-that-if-an-image-fails-to-load-at-runtime-the-ui-swaps-to-an-existing-local-placeholder-instead-of-showing-a-broken-image-icon",
+      "title": "Add a graceful image fallback for book covers and the author portrait so that if an image fails to load at runtime, the UI swaps to an existing local placeholder instead of showing a broken image icon.",
+      "reqIds": [
+        "REQ-9"
       ],
       "version": 1
     }

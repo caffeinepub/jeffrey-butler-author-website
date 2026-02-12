@@ -10,7 +10,7 @@ export const siteContent = {
       title: 'Torment',
       status: 'published' as const,
       statusLabel: 'Published',
-      coverImage: '/assets/uploads/torment-cover.png',
+      coverImage: '/assets/generated/book-torment-cover.dim_1600x2560.png',
       blurb: 'A gripping psychological thriller that delves into the darkest corners of the human mind. When a series of mysterious events unfold, nothing is as it seems.',
       extendedDescription: 'Torment weaves a complex narrative of suspense and intrigue, challenging readers to question reality itself. With masterful pacing and unforgettable characters, this debut novel establishes Jeffrey Butler as a fresh voice in contemporary thriller fiction.',
     },
@@ -25,7 +25,7 @@ export const siteContent = {
     },
   ],
   about: {
-    portraitImage: '/assets/uploads/jeffrey-butler-portrait.png',
+    portraitImage: '/assets/Jeffrey Butler profile image.png',
     bio: [
       'Jeffrey Butler is an emerging voice in psychological thriller fiction, known for crafting narratives that challenge readers to question their perceptions of reality. With a keen eye for detail and a deep understanding of human psychology, his stories explore the complex motivations that drive people to their breaking points.',
       'His debut novel, Torment, has captivated readers with its intricate plot and unforgettable characters. Drawing inspiration from classic thriller writers while bringing a fresh, contemporary perspective, Jeffrey creates stories that linger long after the final page.',

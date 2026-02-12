@@ -1,4 +1,5 @@
 import { Card, CardContent } from '@/components/ui/card';
+import { SafeImage } from '@/components/SafeImage';
 import { siteContent } from '@/content/siteContent';
 
 export default function AboutPage() {
@@ -20,8 +21,9 @@ export default function AboutPage() {
               <div className="grid md:grid-cols-[350px_1fr] gap-0">
                 {/* Author Portrait */}
                 <div className="relative aspect-square md:aspect-auto bg-muted">
-                  <img
+                  <SafeImage
                     src={siteContent.about.portraitImage}
+                    fallbackSrc="/assets/generated/author-portrait-placeholder.dim_1024x1024.png"
                     alt="Jeffrey Butler"
                     className="absolute inset-0 w-full h-full object-cover"
                   />

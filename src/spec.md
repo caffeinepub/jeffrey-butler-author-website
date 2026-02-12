@@ -1,12 +1,11 @@
 # Specification
 
 ## Summary
-**Goal:** Replace the placeholder "Torment" book cover and the About page author portrait with the user-provided images.
+**Goal:** Fix broken image links across the author site and ensure graceful fallbacks when images fail to load.
 
 **Planned changes:**
-- Add the uploaded cover image (`image.png`) and author portrait (`Jeffrey Butler profile image.png`) to the frontend as static assets under a stable public path (e.g., `frontend/public/assets/uploads/`) using normalized, web-safe kebab-case filenames.
-- Update `frontend/src/content/siteContent.ts` so the book entry with id `torment` points to the new cover asset path.
-- Update `frontend/src/content/siteContent.ts` so the About page portrait points to the new author image asset path.
-- Keep the second book (“coming-soon”) cover image unchanged (continue using the existing placeholder) unless a second uploaded cover asset is present and explicitly wired.
+- Update image paths in site content/config so hero background, book covers, and author portrait reference existing static files with exact filename/case matches under `frontend/public`.
+- Verify images render correctly on `/`, `/books`, and `/about` with no missing assets in production.
+- Add runtime image fallback behavior for book covers and the author portrait to swap to an existing local placeholder on load error (without causing infinite `onError` loops).
 
-**User-visible outcome:** The Home and Books pages display the updated "Torment" cover, and the About page displays the updated author portrait, with no broken image links.
+**User-visible outcome:** Home, Books, and About pages display all images correctly, and if any cover/portrait fails to load, a local placeholder image is shown instead of a broken image icon.

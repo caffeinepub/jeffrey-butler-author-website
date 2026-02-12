@@ -1,5 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { SafeImage } from '@/components/SafeImage';
 import { siteContent } from '@/content/siteContent';
 
 export default function BooksPage() {
@@ -21,8 +22,9 @@ export default function BooksPage() {
               <div className="grid md:grid-cols-[300px_1fr] gap-0">
                 {/* Book Cover */}
                 <div className="relative aspect-[2/3] md:aspect-auto bg-muted">
-                  <img
+                  <SafeImage
                     src={book.coverImage}
+                    fallbackSrc="/assets/generated/book-coming-soon-cover.dim_1600x2560.png"
                     alt={`${book.title} cover`}
                     className="absolute inset-0 w-full h-full object-cover"
                   />

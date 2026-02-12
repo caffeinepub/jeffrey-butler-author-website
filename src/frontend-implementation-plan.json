@@ -1,49 +1,77 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Wire user-provided cover and author portrait images as static assets",
+  "title": "Fix broken static image paths and add runtime image fallbacks",
   "requirements": [
     {
-      "id": "REQ-6",
-      "summary": "Add the uploaded Torment cover and author portrait images as static public assets with normalized filenames and wire them into the UI via content references.",
+      "id": "REQ-8",
+      "summary": "Correct all referenced static image paths and ensure required images exist under frontend/public with exact filename casing.",
       "acceptanceCriteria": [
-        "The repository contains the two uploaded images saved under frontend/public in a stable location (e.g., /assets/uploads/) with normalized filenames (kebab-case, no spaces).",
-        "The Torment book entry is updated to use the new Torment cover asset path.",
-        "The About page portrait is updated to use the new author portrait asset path.",
-        "The app loads with no broken image URLs in Home, Books, or About pages."
+        "Navigating to /, /books, and /about shows no broken images (no empty image boxes).",
+        "The following paths resolve to actual static files (no 404s): siteContent.hero.backgroundImage, each entry in siteContent.books[].coverImage, and siteContent.about.portraitImage.",
+        "All image filenames referenced in code match the exact filenames present under frontend/public (including case sensitivity)."
       ],
       "file_operations": [
         {
-          "path": "frontend/public/assets/uploads/torment-cover.png",
-          "operation": "create",
-          "description": "Add the user-uploaded Torment cover image (source upload: \"image.png\") as a static public asset with a web-safe kebab-case filename."
-        },
-        {
-          "path": "frontend/public/assets/uploads/jeffrey-butler-profile-image.png",
-          "operation": "create",
-          "description": "Add the user-uploaded author portrait image (source upload: \"Jeffrey Butler profile image.png\") as a static public asset with a web-safe kebab-case filename."
-        },
-        {
           "path": "frontend/src/content/siteContent.ts",
           "operation": "modify",
-          "description": "Update references so the Torment book cover and About page portrait use the new static asset paths under /assets/uploads/."
+          "description": "Update siteContent asset paths to match the actual static files: set Torment coverImage to /assets/generated/book-torment-cover.dim_1600x2560.png; ensure hero backgroundImage remains /assets/generated/hero-bg.dim_1920x1080.png; ensure coming-soon cover remains /assets/generated/book-coming-soon-cover.dim_1600x2560.png; set about.portraitImage to /assets/uploads/jeffrey-butler-portrait.png."
+        },
+        {
+          "path": "frontend/public/assets/generated/hero-bg.dim_1920x1080.png",
+          "operation": "create",
+          "description": "Add the generated hero background image as a static asset at this exact path and filename so production builds can resolve siteContent.hero.backgroundImage."
+        },
+        {
+          "path": "frontend/public/assets/generated/book-torment-cover.dim_1600x2560.png",
+          "operation": "create",
+          "description": "Add the generated Torment cover image as a static asset at this exact path and filename so production builds can resolve siteContent.books[].coverImage for Torment."
+        },
+        {
+          "path": "frontend/public/assets/generated/book-coming-soon-cover.dim_1600x2560.png",
+          "operation": "create",
+          "description": "Add the generated coming-soon cover placeholder image as a static asset at this exact path and filename so production builds can resolve siteContent.books[].coverImage for the in-progress book."
+        },
+        {
+          "path": "frontend/public/assets/uploads/jeffrey-butler-portrait.png",
+          "operation": "create",
+          "description": "Add the author portrait image as a static asset at this exact path and filename (including case) so production builds can resolve siteContent.about.portraitImage."
         }
       ]
     },
     {
-      "id": "REQ-7",
-      "summary": "Update siteContent to point Torment cover and author portrait to the new static asset paths while leaving the second book cover unchanged unless a second uploaded asset exists.",
+      "id": "REQ-9",
+      "summary": "Add a reusable image component that swaps to a local placeholder when book cover/portrait images fail to load, without infinite onError loops.",
       "acceptanceCriteria": [
-        "siteContent.books entry with id \"torment\" has coverImage updated to the new uploaded cover path.",
-        "siteContent.about.portraitImage is updated to the new uploaded author image path.",
-        "siteContent.books entry with id \"coming-soon\" continues to reference the existing placeholder cover image path unless a second uploaded cover asset exists in the repo and is explicitly wired up.",
-        "HomePage and BooksPage render the updated Torment cover, and AboutPage renders the updated author portrait."
+        "If any cover/portrait image fails to load, the UI displays a local placeholder image instead.",
+        "Fallback behavior works on Home, Books, and About pages.",
+        "No infinite onError loops occur when applying the fallback."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/content/siteContent.ts",
+          "path": "frontend/src/components/SafeImage.tsx",
+          "operation": "create",
+          "description": "Create a small reusable SafeImage component that wraps an <img> with an onError handler to swap to a provided local fallbackSrc once (guarded to prevent infinite loops)."
+        },
+        {
+          "path": "frontend/src/pages/HomePage.tsx",
           "operation": "modify",
-          "description": "Set siteContent.books[id=\"torment\"].coverImage to \"/assets/uploads/torment-cover.png\" and siteContent.about.portraitImage to \"/assets/uploads/jeffrey-butler-profile-image.png\"; keep coming-soon coverImage unchanged."
+          "description": "Use the new SafeImage component for each featured book cover image and provide a local fallback (use /assets/generated/book-coming-soon-cover.dim_1600x2560.png) so broken cover links gracefully degrade without showing a broken image icon."
+        },
+        {
+          "path": "frontend/src/pages/BooksPage.tsx",
+          "operation": "modify",
+          "description": "Use the new SafeImage component for each book cover image and provide a local fallback (use /assets/generated/book-coming-soon-cover.dim_1600x2560.png) so cover images gracefully degrade on the Books page."
+        },
+        {
+          "path": "frontend/src/pages/AboutPage.tsx",
+          "operation": "modify",
+          "description": "Use the new SafeImage component for the author portrait and provide a local fallback (use /assets/generated/author-portrait-placeholder.dim_1024x1024.png) with loop prevention."
+        },
+        {
+          "path": "frontend/public/assets/generated/author-portrait-placeholder.dim_1024x1024.png",
+          "operation": "create",
+          "description": "Add the generated author portrait placeholder image as a static asset at this exact path and filename for runtime fallback usage."
         }
       ]
     }
