@@ -1,0 +1,59 @@
+{
+  "kind": "build_request",
+  "title": "Replace placeholder book cover and author portrait with user-provided images",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-6",
+      "text": "Add the user-uploaded images to the frontend as static assets and reference them with web-safe filenames (no spaces) under a public assets folder (e.g., frontend/public/assets/uploads/). Use the uploaded file \"image.png\" as the cover image for the published book \"Torment\", and use the uploaded file \"Jeffrey Butler profile image.png\" as the author portrait image.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-recent-1"
+        ],
+        "quotes": [
+          "Lets make some changes, Heres the first and second book's covers. And also an iamge of the author"
+        ]
+      },
+      "acceptanceCriteria": [
+        "The repository contains the two uploaded images saved under frontend/public in a stable location (e.g., /assets/uploads/) with normalized filenames (kebab-case, no spaces).",
+        "The Torment book entry is updated to use the new Torment cover asset path.",
+        "The About page portrait is updated to use the new author portrait asset path.",
+        "The app loads with no broken image URLs in Home, Books, or About pages."
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "text": "Update frontend/src/content/siteContent.ts to point to the new static asset paths for (1) the \"Torment\" cover image and (2) the author portrait image, while leaving the second book's cover image unchanged (still using the existing placeholder) unless a second cover image asset is actually present in the project.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-recent-1"
+        ],
+        "quotes": [
+          "Heres the first and second book's covers. And also an iamge of the author"
+        ]
+      },
+      "acceptanceCriteria": [
+        "siteContent.books entry with id \"torment\" has coverImage updated to the new uploaded cover path.",
+        "siteContent.about.portraitImage is updated to the new uploaded author image path.",
+        "siteContent.books entry with id \"coming-soon\" continues to reference the existing placeholder cover image path unless a second uploaded cover asset exists in the repo and is explicitly wired up.",
+        "HomePage and BooksPage render the updated Torment cover, and AboutPage renders the updated author portrait."
+      ]
+    }
+  ],
+  "constraints": [
+    "Do not edit files under frontend/src/components/ui (Shadcn UI components are read-only).",
+    "Do not modify frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, or frontend/src/main.tsx (immutable paths).",
+    "Keep the backend as a single Motoko actor; no backend changes are required for this update."
+  ],
+  "nonGoals": [
+    "Implementing a mailing list feature.",
+    "Creating or changing any backend data storage for books/about content.",
+    "Generating new placeholder images (this change uses the user-provided images and keeps existing placeholders for anything not provided)."
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  }
+}

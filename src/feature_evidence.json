@@ -1,0 +1,41 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-add-the-user-uploaded-images-to-the-frontend-as-static-assets-and-reference-them-with-web-safe-filenames-no-spaces-under-a-public-assets-folder-e-g-frontend-public-assets-uploads-use-the-uploaded-file-image-png-as-the-cover-image-for-the-published-book-torment-and-use-the-uploaded-file-jeffrey-butler-profile-image-png-as-the-author-portrait-image",
+      "featureTitle": "Add the user-uploaded images to the frontend as static assets and reference them with web-safe filenames (no spaces) under a public assets folder (e.g., frontend/public/assets/uploads/). Use the uploaded file \"image.png\" as the cover image for the published book \"Torment\", and use the uploaded file \"Jeffrey Butler profile image.png\" as the author portrait image.",
+      "files": [
+        "frontend/src/content/siteContent.ts"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-6"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-update-frontend-src-content-sitecontent-ts-to-point-to-the-new-static-asset-paths-for-1-the-torment-cover-image-and-2-the-author-portrait-image-while-leaving-the-second-book-s-cover-image-unchanged-still-using-the-existing-placeholder-unless-a-second-cover-image-asset-is-actually-present-in-the-project",
+      "featureTitle": "Update frontend/src/content/siteContent.ts to point to the new static asset paths for (1) the \"Torment\" cover image and (2) the author portrait image, while leaving the second book's cover image unchanged (still using the existing placeholder) unless a second cover image asset is actually present in the project.",
+      "files": [
+        "frontend/src/content/siteContent.ts"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-7"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

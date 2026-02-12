@@ -1,0 +1,51 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Wire user-provided cover and author portrait images as static assets",
+  "requirements": [
+    {
+      "id": "REQ-6",
+      "summary": "Add the uploaded Torment cover and author portrait images as static public assets with normalized filenames and wire them into the UI via content references.",
+      "acceptanceCriteria": [
+        "The repository contains the two uploaded images saved under frontend/public in a stable location (e.g., /assets/uploads/) with normalized filenames (kebab-case, no spaces).",
+        "The Torment book entry is updated to use the new Torment cover asset path.",
+        "The About page portrait is updated to use the new author portrait asset path.",
+        "The app loads with no broken image URLs in Home, Books, or About pages."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/public/assets/uploads/torment-cover.png",
+          "operation": "create",
+          "description": "Add the user-uploaded Torment cover image (source upload: \"image.png\") as a static public asset with a web-safe kebab-case filename."
+        },
+        {
+          "path": "frontend/public/assets/uploads/jeffrey-butler-profile-image.png",
+          "operation": "create",
+          "description": "Add the user-uploaded author portrait image (source upload: \"Jeffrey Butler profile image.png\") as a static public asset with a web-safe kebab-case filename."
+        },
+        {
+          "path": "frontend/src/content/siteContent.ts",
+          "operation": "modify",
+          "description": "Update references so the Torment book cover and About page portrait use the new static asset paths under /assets/uploads/."
+        }
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "summary": "Update siteContent to point Torment cover and author portrait to the new static asset paths while leaving the second book cover unchanged unless a second uploaded asset exists.",
+      "acceptanceCriteria": [
+        "siteContent.books entry with id \"torment\" has coverImage updated to the new uploaded cover path.",
+        "siteContent.about.portraitImage is updated to the new uploaded author image path.",
+        "siteContent.books entry with id \"coming-soon\" continues to reference the existing placeholder cover image path unless a second uploaded cover asset exists in the repo and is explicitly wired up.",
+        "HomePage and BooksPage render the updated Torment cover, and AboutPage renders the updated author portrait."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/content/siteContent.ts",
+          "operation": "modify",
+          "description": "Set siteContent.books[id=\"torment\"].coverImage to \"/assets/uploads/torment-cover.png\" and siteContent.about.portraitImage to \"/assets/uploads/jeffrey-butler-profile-image.png\"; keep coming-soon coverImage unchanged."
+        }
+      ]
+    }
+  ]
+}

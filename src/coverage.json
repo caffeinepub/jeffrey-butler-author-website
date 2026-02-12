@@ -1,0 +1,51 @@
+{
+  "kind": "coverage_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-12T17:28:56.136Z",
+  "sources": {
+    "buildRequest": true,
+    "implementationPlan": true
+  },
+  "requirements": {
+    "total": 2,
+    "implemented": 2,
+    "items": [
+      {
+        "id": "REQ-6",
+        "summary": "Add the user-uploaded images to the frontend as static assets and reference them with web-safe filenames (no spaces) under a public assets folder (e.g., frontend/public/assets/uploads/). Use the uploaded file \"image.png\" as the cover image for the published book \"Torment\", and use the uploaded file \"Jeffrey Butler profile image.png\" as the author portrait image.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/public/assets/uploads/torment-cover.png",
+          "frontend/public/assets/uploads/jeffrey-butler-profile-image.png",
+          "frontend/src/content/siteContent.ts"
+        ],
+        "matchedFiles": [
+          "frontend/src/content/siteContent.ts"
+        ]
+      },
+      {
+        "id": "REQ-7",
+        "summary": "Update frontend/src/content/siteContent.ts to point to the new static asset paths for (1) the \"Torment\" cover image and (2) the author portrait image, while leaving the second book's cover image unchanged (still using the existing placeholder) unless a second cover image asset is actually present in the project.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/content/siteContent.ts"
+        ],
+        "matchedFiles": [
+          "frontend/src/content/siteContent.ts"
+        ]
+      }
+    ]
+  },
+  "changedFiles": [
+    "build-request.json",
+    "build-template/README.md",
+    "feature_evidence.json",
+    "frontend-file-summaries.txt",
+    "frontend-implementation-plan.json",
+    "frontend/src/content/siteContent.ts",
+    "project_state.json",
+    "scratch/component-selection.json",
+    "spec.md",
+    "spec_vs_diff_report.json"
+  ]
+}

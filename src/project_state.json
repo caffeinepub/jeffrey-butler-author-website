@@ -1,0 +1,86 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 5,
+  "summary": "Build an author website for Jeffrey Butler (similar in style to https://www.danpadavona.com/) to showcase current and upcoming books, including the published book \"Torment\" and a second book in progress.",
+  "architectural_notes": [
+    "Replace generated placeholder assets (book covers + author portrait) with user-provided images for the two books and the author headshot; update site content/config to reference the new static assets."
+  ],
+  "known_issues": [],
+  "isFixRequest": false,
+  "existing_features": [
+    {
+      "id": "feature-create-a-responsive-author-website-for-jeffrey-butler-with-site-structure-and-content-suitable-for-an-author-portfolio-that-is-broadly-similar-in-layout-complexity-to-https-www-danpadavona-com-header-navigation-hero-section-featured-book-s-and-clear-sectioning",
+      "title": "Create a responsive author website for Jeffrey Butler, with site structure and content suitable for an author portfolio that is broadly similar in layout complexity to https://www.danpadavona.com/ (header navigation, hero section, featured book(s), and clear sectioning).",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-books-section-page-that-displays-at-least-two-entries-1-the-published-book-titled-torment-and-2-a-second-book-entry-marked-as-in-the-works-teaser-placeholder-each-entry-must-support-title-status-published-in-progress-short-description-blurb-and-cover-image-using-generated-placeholders-if-real-covers-are-not-provided",
+      "title": "Add a Books section/page that displays at least two entries: (1) the published book titled \"Torment\" and (2) a second book entry marked as \"in the works\" (teaser/placeholder). Each entry must support: title, status (published / in progress), short description blurb, and cover image (using generated placeholders if real covers are not provided).",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-an-about-section-page-for-jeffrey-butler-with-editable-copy-stored-in-a-single-frontend-constants-content-file-and-a-portrait-style-visual-use-a-generated-placeholder-image-until-a-real-author-photo-is-provided",
+      "title": "Add an About section/page for Jeffrey Butler with editable copy (stored in a single frontend constants/content file) and a portrait-style visual (use a generated placeholder image until a real author photo is provided).",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-establish-a-coherent-visual-theme-for-the-entire-site-colors-typography-spacing-and-component-styling-appropriate-for-an-author-brand-applied-consistently-across-all-pages-sections-do-not-use-a-blue-purple-dominant-palette",
+      "title": "Establish a coherent visual theme for the entire site (colors, typography, spacing, and component styling) appropriate for an author brand, applied consistently across all pages/sections. Do not use a blue/purple-dominant palette.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-the-required-generated-images-to-the-project-as-static-assets-under-frontend-public-assets-generated-and-render-them-in-the-appropriate-ui-locations-hero-background-book-covers-author-portrait-placeholder",
+      "title": "Add the required generated images to the project as static assets under frontend/public/assets/generated and render them in the appropriate UI locations (hero/background, book covers, author portrait placeholder).",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-the-user-uploaded-images-to-the-frontend-as-static-assets-and-reference-them-with-web-safe-filenames-no-spaces-under-a-public-assets-folder-e-g-frontend-public-assets-uploads-use-the-uploaded-file-image-png-as-the-cover-image-for-the-published-book-torment-and-use-the-uploaded-file-jeffrey-butler-profile-image-png-as-the-author-portrait-image",
+      "title": "Add the user-uploaded images to the frontend as static assets and reference them with web-safe filenames (no spaces) under a public assets folder (e.g., frontend/public/assets/uploads/). Use the uploaded file \"image.png\" as the cover image for the published book \"Torment\", and use the uploaded file \"Jeffrey Butler profile image.png\" as the author portrait image.",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-frontend-src-content-sitecontent-ts-to-point-to-the-new-static-asset-paths-for-1-the-torment-cover-image-and-2-the-author-portrait-image-while-leaving-the-second-book-s-cover-image-unchanged-still-using-the-existing-placeholder-unless-a-second-cover-image-asset-is-actually-present-in-the-project",
+      "title": "Update frontend/src/content/siteContent.ts to point to the new static asset paths for (1) the \"Torment\" cover image and (2) the author portrait image, while leaving the second book's cover image unchanged (still using the existing placeholder) unless a second cover image asset is actually present in the project.",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Create an author website for Jeffrey Butler, styled similarly to https://www.danpadavona.com/, to showcase books including \"Torment\" and an upcoming second book.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Add a Books section/page to display details for the book \"Torment\" and a placeholder/teaser for the second book in the works.",
+      "reqIds": [],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Jeffrey Butler Author Website",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}
